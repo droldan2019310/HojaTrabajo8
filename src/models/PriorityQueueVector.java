@@ -5,7 +5,7 @@ import java.util.Vector;
 import interfaces.IPriorityQueue;
 
 public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQueue<E>{
-    protected Vector<E> data; // the data, kept in heap order
+    private Vector<E> data; // the data, kept in heap order
 
     public PriorityQueueVector(){
         data = new Vector<E>();
@@ -15,30 +15,27 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
     // post: constructs a new priority queue from an unordered vector
     {
         int i;
-        data = new Vector<E>(v.size()); // we know ultimate size
+        data = new Vector<E>(v.size()); 
         for (i = 0; i < v.size(); i++)
-        { // add elements to heap
+        { 
             add(v.get(i));
         }
     }
 
-    protected static int parent(int i)
-    // pre: 0 <= i < size
-    // post: returns parent of node at location i
+    private static int parent(int i)
+    
     {
         return (i-1)/2;
     }
 
-    protected static int left(int i)
-    // pre: 0 <= i < size
-    // post: returns index of left child of node at location i
+    private static int left(int i)
+ 
     {
         return 2*i+1;
     }
 
-    protected static int right(int i){
-    // pre: 0 <= i < size
-    // post: returns index of right child of node at location i
+    private static int right(int i){
+
         return 2*(i+1);
     }
 
@@ -56,9 +53,8 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         return minVal;
     }
 
-    protected void pushDownRoot(int raiz)
-    // pre: 0 <= raiz < size
-    // post: moves node at index root down to appropriate position in subtree
+    private void pushDownRoot(int raiz)
+ 
     {
         int heapSize = data.size();
         E valor = data.get(raiz);
@@ -83,21 +79,7 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         }
     }
 
-    protected void percolateUp(int hoja)
-    // pre: 0 <= leaf < size
-    // post: moves node at index leaf up to appropriate position
-    {
-        int padre = parent(hoja);
-        E value = data.get(hoja);
-        while (hoja > 0 &&
-                (value.compareTo(data.get(padre)) < 0))
-        {
-            data.set(hoja,data.get(padre));
-            hoja = padre;
-            padre = parent(hoja);
-        }
-        data.set(hoja,value);
-    }
+ 
 
     @Override
     public void add(E value) {
@@ -128,12 +110,7 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
 		return data.remove(data.size()-1);
 	}
 
-	public PriorityQueueVector<String> listVectorHeap(String[] str, int count, PriorityQueueVector<String> v) {
-		for(int i = count-1;i>=0;i--) {
-			v.add(str[i]);
-		}
-		return v;
-	}
+	
 	
 	public String[] toString(PriorityQueueVector<String> v,int count) {
 		String str[] = new String[count];
@@ -162,4 +139,26 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
 		return data.get(index);
 	}
 
+    public PriorityQueueVector<String> listVectorHeap(String[] str, int count, PriorityQueueVector<String> v) {
+		for(int i = count-1;i>=0;i--) {
+			v.add(str[i]);
+		}
+		return v;
+	}
+
+
+    private void percolateUp(int hoja)
+
+    {
+        int padre = parent(hoja);
+        E value = data.get(hoja);
+        while (hoja > 0 &&
+                (value.compareTo(data.get(padre)) < 0))
+        {
+            data.set(hoja,data.get(padre));
+            hoja = padre;
+            padre = parent(hoja);
+        }
+        data.set(hoja,value);
+    }
 }
