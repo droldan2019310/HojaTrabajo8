@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Scanner;
 
 import models.PriorityQueueVector;
