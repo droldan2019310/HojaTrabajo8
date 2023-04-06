@@ -21,10 +21,17 @@ public class App {
         app.start();
     }
 
+    /**
+     * initialize the program
+     */
     public void start(){
         menu();
     }
 
+
+    /**
+     * first menu to use vector or collection
+     */
     public void menu(){
         System.out.println("1. USAR VECTOR");
         System.out.println("2. USAR COLLECTION FRAMEWORK");
@@ -38,6 +45,9 @@ public class App {
     }
 
 
+    /**
+     * read all the pacients
+     */
     public void readFile(){
         File file = new File("src/Pacientes.txt");
         BufferedReader br;
@@ -69,6 +79,9 @@ public class App {
     }
 
 
+    /**
+     * menu to view pacients or remove
+     */
     public void menuPacient(){
         int resp=0;
         while(resp!=3){
@@ -90,6 +103,9 @@ public class App {
         }
     }
 
+    /**
+     * view all the pacients
+     */
     public void viewPacient(){
         int size = vector.size();
         if(type==1){
@@ -102,6 +118,9 @@ public class App {
         }
     }
 
+    /**
+     * remove the first pacient
+     */
     public void remove(){
         if (type==1){
             System.out.println(vector.pop());

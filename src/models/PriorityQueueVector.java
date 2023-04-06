@@ -7,10 +7,17 @@ import interfaces.IPriorityQueue;
 public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQueue<E>{
     private Vector<E> data; // the data, kept in heap order
 
+    /**
+     * construction empty
+     */
     public PriorityQueueVector(){
         data = new Vector<E>();
     }
 
+    /**
+     * constructor with vector
+     * @param v
+     */
     public PriorityQueueVector(Vector<E> v)
     // post: constructs a new priority queue from an unordered vector
     {
@@ -22,28 +29,44 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         }
     }
 
-    private static int parent(int i)
-    
-    {
+    /**
+     * get parent
+     * @param i
+     * @return the position of the parent
+     */
+    private static int parent(int i){
         return (i-1)/2;
     }
 
-    private static int left(int i)
- 
-    {
+    /**
+     * get  left child
+     * @param i
+     * @return position left child
+     */
+    private static int left(int i){
         return 2*i+1;
     }
 
+    /**
+     * get right child
+     * @param i
+     * @return position right child
+     */
     private static int right(int i){
-
         return 2*(i+1);
     }
 
+    /**
+     * get first element
+     */
     @Override
     public E getFirst() {
         return data.get(0);
     }
 
+    /**
+     * remove element
+     */
     @Override
     public E remove() {
         E minVal = getFirst();
@@ -53,6 +76,10 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         return minVal;
     }
 
+    /**
+     * set root in child
+     * @param raiz
+     */
     private void pushDownRoot(int raiz)
  
     {
@@ -79,14 +106,19 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         }
     }
 
- 
-
+    
     @Override
+    /**
+     * insert element
+     */
     public void add(E value) {
         data.add(value);
         percolateUp(data.size()-1);
     }
 
+    /**
+     * validate if is empty
+     */
     @Override
     public boolean isEmpty() {
         if (data.size()==0){
@@ -95,23 +127,30 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
         return false;
     }
 
+    /**
+     * get size of element
+     */
     @Override
     public int size() {
         return data.size();
     }
 
-    @Override
-    public void clear() {
-
-    }
     
+    /**
+     * remove element public method
+     */
     public E pop() {
 		
 		return data.remove(data.size()-1);
 	}
 
 	
-	
+	/**
+     * 
+     * @param v
+     * @param count
+     * @return return string of all the elements
+     */
 	public String[] toString(PriorityQueueVector<String> v,int count) {
 		String str[] = new String[count];
 		for(int i = 0; i<count; i++) {
@@ -120,6 +159,9 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
 		return str;
 	}
 	
+    /*
+     * order vector
+     */
 	public String[] sortHeap(String[] str, int contador) {
 		String temp;
 		for(int i = 0; i<contador;i++) {
@@ -134,11 +176,22 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
 		return str;
 	}
 	
-
+    /**
+     * search element
+     * @param index
+     * @return
+     */
 	public E get(int index) {
 		return data.get(index);
 	}
 
+    /**
+     * return vector added
+     * @param str
+     * @param count
+     * @param v
+     * @return
+     */
     public PriorityQueueVector<String> listVectorHeap(String[] str, int count, PriorityQueueVector<String> v) {
 		for(int i = count-1;i>=0;i--) {
 			v.add(str[i]);
@@ -146,10 +199,12 @@ public class PriorityQueueVector<E extends Comparable<E>> implements IPriorityQu
 		return v;
 	}
 
+    /**
+     * validate if the parent have the correct position
+     * @param hoja
+     */
 
-    private void percolateUp(int hoja)
-
-    {
+    private void percolateUp(int hoja){
         int padre = parent(hoja);
         E value = data.get(hoja);
         while (hoja > 0 &&

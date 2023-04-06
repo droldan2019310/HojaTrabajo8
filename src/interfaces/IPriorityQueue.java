@@ -11,5 +11,4 @@ public interface IPriorityQueue<E extends Comparable<E>>{
 	
 	public int size();
 	
-	public void clear();
 }
